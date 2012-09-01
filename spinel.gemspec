@@ -27,7 +27,8 @@ Gem::Specification.new do |s|
     "VERSION",
     "lib/spinel.rb",
     "spec/spec_helper.rb",
-    "spec/spinel_spec.rb"
+    "spec/spinel_spec.rb",
+    "spinel.gemspec"
   ]
   s.homepage = "http://github.com/hatahata/spinel"
   s.licenses = ["MIT"]
