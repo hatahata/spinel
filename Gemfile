@@ -6,9 +6,12 @@ source "http://rubygems.org"
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
 group :development do
+  gem 'mongoid'
   gem "rspec"
   gem "rdoc"
   gem "bundler"
   gem "jeweler"
   gem "simplecov"
+  gem 'factory_girl'
+  gem 'database_cleaner'
 end

@@ -1,5 +1,1 @@
-class Spinel
-  def self.test
-    puts 'hello'
-  end
-end
+require 'spinel/act_as_taggable'
