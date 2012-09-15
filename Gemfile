@@ -6,6 +6,8 @@ source "http://rubygems.org"
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
 group :development do
+  gem 'bson'
+  gem 'bson_ext'
   gem 'mongoid'
   gem "rspec"
   gem "rdoc"

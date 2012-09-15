@@ -30,9 +30,10 @@ describe Mongoid::ActAsTaggable do
       model.should respond_to :tags
     end
 
-    describe "#tag_list, #tag_list=" do
-      it "should set tag list as array" do
-        model.tag_list = tag_value
+    describe "#tag_list=" do
+      before(:each) { model.tag_list = tag_value }
+
+      it "should set value as string array" do
         model.tag_list.should =~ tag_array
       end
     end
@@ -44,6 +45,19 @@ describe Mongoid::ActAsTaggable do
         model.tags.should =~ tag_array.map do |tag|
           Mongoid::ActAsTaggable::Tag.new tag
         end
+      end
+    end
+
+    describe ".tag_counts" do
+      before(:each) do
+        Test.create! tag_list: "blue, red, yellow, black"
+        Test.create! tag_list: "red, yellow, white"
+      end
+
+      it "should return array of Tag class with count of tags" do
+        list = Test.all.map(&:tag_list).compact.flatten
+        list = list.inject(Hash.new(0)) {|h,v| h[v] += 1; h}
+        Test.tag_counts.should =~ list.map {|k,v| Mongoid::ActAsTaggable::Tag.new k, v}
       end
     end
   end
@@ -62,8 +76,8 @@ describe Mongoid::ActAsTaggable do
         model.should respond_to :skills, :interests
       end
 
-      describe "#skill_list, #skill_list=" do
-        it "should set values as array" do
+      describe "#skill_list=" do
+        it "should set value as string array" do
           model.skill_list = tag_value
           model.skill_list.should =~ tag_array
         end
@@ -75,6 +89,22 @@ describe Mongoid::ActAsTaggable do
           model.skills.should =~ tag_array.map do |tag|
             Mongoid::ActAsTaggable::Tag.new tag
           end
+        end
+      end
+
+      describe ".skill_counts" do
+        before(:each) do
+          Test.create! skill_list: "write, read, run, swim"
+          Test.create! skill_list: "run, write, sleep"
+          Test.create! interest_list: "write, read"
+        end
+
+        it "should return array of Tag class with count of tags" do
+          list = Test.all.map(&:skill_list).compact.flatten
+          list = list.inject(Hash.new(0)) {|h,v| h[v] += 1; h }
+          tags = list.map {|k,v| Mongoid::ActAsTaggable::Tag.new k, v }
+
+          Test.skill_counts.should =~ tags
         end
       end
     end
