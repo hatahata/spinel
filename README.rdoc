@@ -1,7 +1,32 @@
 = spinel
 
-Description goes here.
+This gem has been developed for tagging of mongoid using same interface of ActsAsTaggableOn.
 
+== Usage
+
+    class User < ActiveRecord::Base
+      include Mongoid::Document
+      include Mongoid::ActAsTaggable
+
+      field "name"
+
+      # Alias for <tt>acts_as_taggable_on :tags</tt>:
+      acts_as_taggable
+      acts_as_taggable_on :skills, :interests
+    end
+    
+    @user = User.new(name: "Bobby")
+    @user.tag_list = "awesome, slick, hefty"
+    @user.skill_list = "joking, clowning, boxing"
+    @user.skill_list # => ["joking","clowning","boxing"] as TagList
+    @user.save
+    
+    @user.tags # => [<Tag name:"awesome">,<Tag name:"slick">,<Tag name:"hefty">]
+    @user.skills # => [<Tag name:"joking">,<Tag name:"clowning">,<Tag name:"boxing">]
+    
+    @frankie = User.create(:name => "Frankie", :skill_list => "joking, flying, eating")
+    User.skill_counts # => [<Tag name="joking" count=2>,<Tag name="clowning" count=1>...]
+    
 == Contributing to spinel
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
