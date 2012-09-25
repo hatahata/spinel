@@ -1,6 +1,7 @@
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'rspec'
+require 'mongoid'
 require 'spinel'
 require 'database_cleaner'
 
@@ -17,7 +18,5 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 end
-
-require 'mongoid'
 
 Mongoid::Config.connect_to("spinel_test")

@@ -1,1 +1,1 @@
-require 'spinel/act_as_taggable'
+require 'mongoid/act_as_taggable'

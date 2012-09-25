@@ -55,7 +55,7 @@ describe Mongoid::ActAsTaggable do
       end
 
       it "should return array of Tag class with count of tags" do
-        list = Test.all.map(&:tag_list).compact.flatten
+        list = Test.all.map(&:tag_list).flatten.compact
         list = list.inject(Hash.new(0)) {|h,v| h[v] += 1; h}
         Test.tag_counts.should =~ list.map {|k,v| Mongoid::ActAsTaggable::Tag.new k, v}
       end
@@ -100,7 +100,7 @@ describe Mongoid::ActAsTaggable do
         end
 
         it "should return array of Tag class with count of tags" do
-          list = Test.all.map(&:skill_list).compact.flatten
+          list = Test.all.map(&:skill_list).flatten.compact
           list = list.inject(Hash.new(0)) {|h,v| h[v] += 1; h }
           tags = list.map {|k,v| Mongoid::ActAsTaggable::Tag.new k, v }
 

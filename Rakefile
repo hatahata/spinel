@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "spinel"
   gem.homepage = "http://github.com/hatahata/spinel"
   gem.license = "MIT"
-  gem.summary = %Q{Taggable feature for Mongoid}
-  gem.description = %Q{Taggable feature for Mongoid etc.}
+  gem.summary = %Q{Taggable feature like ActAsTaggable for Mongoid}
+  gem.description = %Q{Taggable feature like ActAsTaggable for Mongoid etc.}
   gem.email = "norimasa.ando@gmail.com"
   gem.authors = ["NorimasaAndo"]
   # dependencies defined in Gemfile
